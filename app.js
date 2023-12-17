@@ -6,7 +6,18 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+const mongoose = require("mongoose");
 
+mongoose.set("strictQuery", "false");
+const mongoDb =
+  "mongodb+srv://abdellah:admin@cluster0.fgmzfwj.mongodb.net/local_library?retryWrites=true&w=majority";
+
+main()
+  .then((res) => console.log("connected successfully "))
+  .catch((err) => console.log(err));
+async function main() {
+  await mongoose.connect(mongoDb);
+}
 var app = express();
 
 // view engine setup
